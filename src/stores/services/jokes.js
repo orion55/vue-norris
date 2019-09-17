@@ -1,3 +1,3 @@
-import { clientApi } from "@/utils/clientApi";
+import { clientApi } from '@/utils/clientApi'
 
-export const getJokes = () => clientApi("get", "jokes/random");
+export const getJokes = () => clientApi('get', 'jokes/random')

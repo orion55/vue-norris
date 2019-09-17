@@ -1,19 +1,22 @@
-import { getJokes } from "@/stores/services/jokes";
-
 const state = {
-  joke: {}
-};
+  joke: {},
+}
 
 const getters = {
-  joke: () => state.joke
-};
+  joke: () => state.joke,
+}
 
 const mutations = {
-  handleSetJoke(state, data) {
-    state.joke = data;
-  }
-};
+  handleSetJoke (state, data) {
+    state.joke = data
+  },
+}
 
-const actions = {};
+const actions = {}
 
-export default { state, getters, mutations, actions };
+export default {
+  state,
+  getters,
+  mutations,
+  actions,
+}
