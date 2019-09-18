@@ -1,9 +1,13 @@
 const state = {
-  joke: {},
+  joke: {
+    title: 'Привет мир!',
+    icon_url: ''
+  },
 }
 
 const getters = {
-  joke: () => state.joke,
+  getJoke: state => state.joke
+
 }
 
 const mutations = {

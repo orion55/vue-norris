@@ -1,17 +1,19 @@
 <template>
     <div class="joke-box">
-        <h2>{{ title }}</h2>
-        <img :src="poster" alt=""/>
+        <!--        <h2>{{ joke.title}}</h2>-->
+        <h2>{{ getJoke.title}}</h2>
+        <!--        <img :src="joke.icon_url" alt=""/>-->
     </div>
 </template>
 
 <script>
+  import { mapGetters } from 'vuex'
+
   export default {
     name: 'JokeBox',
-    props: {
-      title: String,
-      poster: String,
-    },
+    computed: {
+      ...mapGetters(['getJoke'])
+    }
   }
 </script>
 

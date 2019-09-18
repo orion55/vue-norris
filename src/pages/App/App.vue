@@ -2,7 +2,8 @@
     <div id="app">
         <img src="./../../assets/chuk.gif" class="dance">
         <Btn title="Получить шутку" @handleClick="handleFetchJoke"/>
-        <JokeBox :title="joke.value" :poster="joke.icon_url"/>
+        <!--        <JokeBox :title="joke.value" :poster="joke.icon_url"/>-->
+        <JokeBox></JokeBox>
     </div>
 </template>
 
