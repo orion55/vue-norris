@@ -1,0 +1,53 @@
+button {
+    padding: 0;
+    border: none;
+    font: inherit;
+    color: inherit;
+    background-color: transparent;
+    cursor: pointer;
+}
+
+.btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    text-decoration: none;
+
+    margin: 2px 5px 2px 2px;
+
+    border: solid 2px transparent;
+    border-radius: 15px;
+
+    padding: 1em 1em;
+
+    color: #FFFFFF;
+    background-color: red;
+
+    transition: background-color .5s ease-out;
+
+    text-transform: uppercase;
+
+
+}
+
+.btn:active {
+    transform: translateY(1px);
+    filter: saturate(150%);
+}
+
+.btn:hover {
+    color: red;
+    border-color: red;
+    background-color: white;
+}
+
+.btn::-moz-focus-inner {
+    border: none;
+}
+
+.btn:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(255, 0, 0, 0.5),
+    0 0 0 1.5px rgba(255, 0, 0, 0.5);
+}

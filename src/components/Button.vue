@@ -1,135 +1,50 @@
 <template>
-    <button
-            :class="{
-      btn: true,
-      btn_block: block,
-      btn_disabled: disabled
-    }"
-            :style="{ width }"
-            :disabled="disabled"
-            @click="handleClick"
-    >
-        <span class="btn__title" v-if="!!title">{{ title }}</span>
+    <button class="btn btn__joke" @click="getJoke">
+        <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="sync-alt"
+             class="svg-inline svg-inline__joke" role="img"
+             xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" v-if="flagLoading">
+            <path fill="currentColor"
+                  d="M370.72 133.28C339.458 104.008 298.888 87.962 255.848 88c-77.458.068-144.328 53.178-162.791 126.85-1.344 5.363-6.122 9.15-11.651 9.15H24.103c-7.498 0-13.194-6.807-11.807-14.176C33.933 94.924 134.813 8 256 8c66.448 0 126.791 26.136 171.315 68.685L463.03 40.97C478.149 25.851 504 36.559 504 57.941V192c0 13.255-10.745 24-24 24H345.941c-21.382 0-32.09-25.851-16.971-40.971l41.75-41.749zM32 296h134.059c21.382 0 32.09 25.851 16.971 40.971l-41.75 41.75c31.262 29.273 71.835 45.319 114.876 45.28 77.418-.07 144.315-53.144 162.787-126.849 1.344-5.363 6.122-9.15 11.651-9.15h57.304c7.498 0 13.194 6.807 11.807 14.176C478.067 417.076 377.187 504 256 504c-66.448 0-126.791-26.136-171.315-68.685L48.97 471.03C33.851 486.149 8 475.441 8 454.059V320c0-13.255 10.745-24 24-24z"></path>
+        </svg>
+        <span class="btn__title">Получить шутку</span>
     </button>
 </template>
 
 <script>
+  import { mapActions, mapState } from 'vuex'
+
   export default {
     name: 'Button',
-    props: {
-      hadnleClick: {
-        type: Function,
-        default: () => {},
-      },
-      title: {
-        type: String,
-        default: '',
-      },
-      buttonType: {
-        type: String,
-        default: 'primary',
-        validator: value =>
-          [
-            'primary',
-            'secondary',
-            'thirdly',
-            'fourthly',
-            'fifthly',
-            'sixthly',
-          ].indexOf(value) !== -1,
-      },
-      width: {
-        type: String,
-        default: null,
-      },
-      disabled: {
-        type: Boolean,
-        default: false,
-      },
-      block: {
-        type: Boolean,
-        default: false,
-      },
+    computed: {
+      ...mapState(['flagLoading']),
     },
     methods: {
-      handleClick () {
-        this.$emit('handleClick')
-      },
+      ...mapActions(['getJoke']),
     },
   }
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-    button {
-        padding: 0;
-        border: none;
-        font: inherit;
-        color: inherit;
-        background-color: transparent;
-        /* show a hand cursor on hover; some argue that we
-        should keep the default arrow cursor for buttons */
-        cursor: pointer;
+    @import "css/btn.css";
+    @import "css/misc.css";
+
+    .btn__joke {
+        width: 200px;
     }
 
-    .btn {
-        display: inline-block;
-        text-align: center;
-        text-decoration: none;
-
-        margin: 2px 5px 2px 2px;
-
-        border: solid 2px transparent;
-        border-radius: 15px;
-
-        padding: 1em 1em;
-
-        color: #FFFFFF;
-        background-color: red;
-
-        transition: background-color .5s ease-out;
-
-        text-transform: uppercase;
-
+    .svg-inline__joke {
+        animation: page-loader-circle 0.8s linear infinite;
+        width: 16px;
+        height: 16px;
     }
 
-    .btn:active {
-        transform: translateY(1px);
-        filter: saturate(150%);
+    @keyframes page-loader-circle {
+        from {
+            transform: rotate(0deg);
+        }
+        to {
+            transform: rotate(360deg);
+        }
     }
-
-    .btn:hover {
-        color: red;
-        border-color: red;
-        background-color: white;
-        box-shadow: 0 0 5px rgba(0, 0, 0, 0.6);
-    }
-
-    .btn::-moz-focus-inner {
-        border: none;
-    }
-
-    .btn:focus {
-        outline: none;
-        box-shadow: 0 0 0 3px rgba(255, 0, 0, 0.5),
-        0 0 0 1.5px rgba(255, 0, 0, 0.5);
-    }
-
-    /* .btn {
-         cursor: pointer;
-         width: 140px;
-         height: 50px;
-         border-radius: 4px;
-         background: #d23232;
-         color: #fff;
-         text-transform: uppercase;
-     }
-
-     .btn_block {
-         display: block;
-     }
-
-     .btn_disabled {
-         background: gray;
-     }*/
 </style>
