@@ -1,8 +1,10 @@
 <template>
     <div id="app">
         <img src="./../../assets/chuk.gif" class="dance">
-        <Btn title="Получить шутку" @handleClick="handleFetchJoke"/>
-        <!--        <JokeBox :title="joke.value" :poster="joke.icon_url"/>-->
+        <div class="btn__group">
+            <Btn title="Получить шутку" @handleClick="handleFetchJoke"/>
+            <Btn title="Остановить таймер" @handleClick="handleFetchJoke"/>
+        </div>
         <JokeBox></JokeBox>
     </div>
 </template>
@@ -10,6 +12,7 @@
 <script>
   import Btn from '@/components/Button'
   import JokeBox from '@/components/JokeBox'
+  import 'normalize.css'
 
   export default {
     name: 'App',
@@ -39,5 +42,7 @@
 
     .dance {
         width: 65px;
+        padding-bottom: 15px;
+        padding-top: 15px;
     }
 </style>

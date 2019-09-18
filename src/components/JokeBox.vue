@@ -1,8 +1,7 @@
 <template>
     <div class="joke-box">
-        <!--        <h2>{{ joke.title}}</h2>-->
         <h2>{{ getJoke.title}}</h2>
-        <!--        <img :src="joke.icon_url" alt=""/>-->
+        <img :src="getJoke.icon_url" alt=""/>
     </div>
 </template>
 

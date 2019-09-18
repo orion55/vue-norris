@@ -1,7 +1,7 @@
 const state = {
   joke: {
-    title: 'Привет мир!',
-    icon_url: ''
+    title: 'There is no adultery mother, there\'s just Chuck Norris in town.',
+    icon_url: 'https://assets.chucknorris.host/img/avatar/chuck-norris.png'
   },
 }
 
