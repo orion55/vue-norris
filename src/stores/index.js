@@ -6,6 +6,7 @@ Vue.use(Vuex)
 
 const state = {
   joke: 'There is no adultery mother, there\'s just Chuck Norris in town.',
+  jokeId: 0,
   flagLoading: false,
   flagTimer: true,
   flagError: false,
@@ -21,6 +22,9 @@ const mutations = {
   setJoke (state, data) {
     if ('value' in data && data.value !== '') {
       state.joke = data.value
+    }
+    if ('id' in data) {
+      state.jokeId = data.id
     }
   },
   setFlagError (state, flag) {
