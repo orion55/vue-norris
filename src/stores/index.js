@@ -20,16 +20,24 @@ const mutations = {
     state.flagLoading = flag
   },
   setJoke (state, data) {
-    state.joke = data
+    if ('value' in data && data.value !== '') {
+      state.joke.title = data.value
+    }
+    if ('url' in data && data.url !== '') {
+      state.joke.icon_url = data.url
+    }
   },
 }
 
 const actions = {
   getJoke ({commit}) {
+    commit('setLoading', true)
     clientApi('jokes/random')
       .then((data) => {
+        commit('setJoke', data)
         console.log(data)
       })
+      .finally(() => commit('setLoading', false))
   },
 }
 

@@ -22,6 +22,7 @@
         justify-content: center;
         flex-direction: column;
         align-items: center;
+        width: 50%;
     }
 
     .joke-box__title {
