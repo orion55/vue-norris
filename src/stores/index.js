@@ -5,12 +5,11 @@ import { clientApi } from '../utils/clientApi'
 Vue.use(Vuex)
 
 const state = {
-  joke: {
-    title: 'There is no adultery mother, there\'s just Chuck Norris in town.',
-    icon_url: 'https://assets.chucknorris.host/img/avatar/chuck-norris.png',
-  },
+  joke: 'There is no adultery mother, there\'s just Chuck Norris in town.',
   flagLoading: false,
   flagTimer: true,
+  flagError: false,
+  errorMsg: ''
 }
 
 const getters = {}
@@ -21,21 +20,26 @@ const mutations = {
   },
   setJoke (state, data) {
     if ('value' in data && data.value !== '') {
-      state.joke.title = data.value
-    }
-    if ('url' in data && data.url !== '') {
-      state.joke.icon_url = data.url
+      state.joke = data.value
     }
   },
+  setFlagError (state, flag) {
+    state.flagError = flag
+  },
+  setErrorMsg (state, msg) {
+    state.errorMsg = msg.toString()
+  }
 }
 
 const actions = {
   getJoke ({commit}) {
     commit('setLoading', true)
+    commit('setFlagError', false)
     clientApi('jokes/random')
-      .then((data) => {
-        commit('setJoke', data)
-        console.log(data)
+      .then((data) => commit('setJoke', data))
+      .catch(error => {
+        commit('setFlagError', true)
+        commit('setErrorMsg', error)
       })
       .finally(() => commit('setLoading', false))
   },
