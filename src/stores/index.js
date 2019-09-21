@@ -60,15 +60,8 @@ const actions = {
     if (!state.flagTimer) {
       const timerDelay = 10000
 
-      const wait = ms => new Promise(r => setTimeout(r, ms))
-
       const repeat = (ms, func) =>
-        new Promise(
-          r => {
-            commit('setIntervalID', setInterval(func, ms))
-            wait(ms)
-              .then(r)
-          })
+        commit('setIntervalID', setInterval(func, ms))
 
       const getLiteJoke = () => {
         commit('setFlagError', false)
@@ -81,7 +74,7 @@ const actions = {
       }
 
       getLiteJoke()
-      repeat(timerDelay, () => Promise.all([getLiteJoke()]))
+      repeat(timerDelay, () => getLiteJoke())
     } else {
       clearInterval(state.intervalID)
     }
@@ -89,7 +82,6 @@ const actions = {
 }
 
 export default new Vuex.Store({
-  strict: process.env.NODE_ENV !== 'production',
   state,
   getters,
   actions,
