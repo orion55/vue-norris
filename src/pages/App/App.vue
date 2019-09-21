@@ -1,6 +1,7 @@
+<!--Компонент основного приложения-->
 <template>
     <div id="app">
-        <img src="./../../assets/chuk.gif" class="dance">
+        <img src="./../../assets/chuk.gif" class="dance" alt="">
         <div class="btn__group">
             <Btn/>
             <ButtonStopWatch/>

@@ -1,3 +1,4 @@
+<!--Компонент вывода шуток по таймеру-->
 <template>
     <button class="btn btn__stop" @click="getTimerJoke">
         <svg aria-hidden="true" focusable="false" data-prefix="far" data-icon="clock"

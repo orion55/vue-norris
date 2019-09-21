@@ -1,3 +1,4 @@
+<!--Компонент кнопки, которая вызывает шутку-->
 <template>
     <button class="btn btn__joke" @click="getJoke">
         <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="sync-alt"

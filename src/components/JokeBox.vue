@@ -1,3 +1,4 @@
+<!--Компонент вывода шуток с анимацией-->
 <template>
     <transition name="fade"
                 enter-active-class="animated fadeIn fast"
