@@ -10,7 +10,8 @@ const state = {
   flagLoading: false,
   flagTimer: true,
   flagError: false,
-  errorMsg: ''
+  errorMsg: '',
+  intervalID: 0,
 }
 
 const getters = {}
@@ -32,7 +33,13 @@ const mutations = {
   },
   setErrorMsg (state, msg) {
     state.errorMsg = msg.toString()
-  }
+  },
+  setTimer (state) {
+    state.flagTimer = !state.flagTimer
+  },
+  setIntervalID (state, id) {
+    state.intervalID = id
+  },
 }
 
 const actions = {
@@ -46,6 +53,41 @@ const actions = {
         commit('setErrorMsg', error)
       })
       .finally(() => commit('setLoading', false))
+  },
+  getTimerJoke ({commit, state}) {
+    commit('setTimer')
+
+    if (!state.flagTimer) {
+      const timerDelay = 1000
+
+      const wait = ms => new Promise(r => setTimeout(r, ms))
+
+      const repeat = (ms, func) =>
+        new Promise(
+          r => {
+            commit('setIntervalID', setInterval(func, ms))
+            wait(ms)
+              .then(r)
+          })
+
+      const myfunction = () => new Promise(r => r(console.log('repeating...')))
+
+      const getLiteJoke = () => {
+        commit('setFlagError', false)
+        clientApi('jokes/random')
+          .then((data) => commit('setJoke', data))
+          .catch(error => {
+            commit('setFlagError', true)
+            commit('setErrorMsg', error)
+          })
+      }
+
+      repeat(timerDelay, () => Promise.all([myfunction()]))
+        .then(console.log('repeat start'))
+    } else {
+      clearInterval(state.intervalID)
+      console.log('Stop timer')
+    }
   },
 }
 
