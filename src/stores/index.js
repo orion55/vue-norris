@@ -58,7 +58,7 @@ const actions = {
     commit('setTimer')
 
     if (!state.flagTimer) {
-      const timerDelay = 1000
+      const timerDelay = 10000
 
       const wait = ms => new Promise(r => setTimeout(r, ms))
 
@@ -70,8 +70,6 @@ const actions = {
               .then(r)
           })
 
-      const myfunction = () => new Promise(r => r(console.log('repeating...')))
-
       const getLiteJoke = () => {
         commit('setFlagError', false)
         clientApi('jokes/random')
@@ -82,11 +80,10 @@ const actions = {
           })
       }
 
-      repeat(timerDelay, () => Promise.all([myfunction()]))
-        .then(console.log('repeat start'))
+      getLiteJoke()
+      repeat(timerDelay, () => Promise.all([getLiteJoke()]))
     } else {
       clearInterval(state.intervalID)
-      console.log('Stop timer')
     }
   },
 }
