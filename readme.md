@@ -37,7 +37,7 @@ npm serve
 ## Ссылки
 
 - Домашняя страница: https://orion55.github.io/vue-norris/
-- Repository: hhttps://github.com/orion55/vue-norris
+- Repository: https://github.com/orion55/vue-norris
 
 
 
